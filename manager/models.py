@@ -22,20 +22,29 @@ class Post(models.Model):
     def __str__(self):
         return "{}'s post".format(self.profile.user)
 
-class like(models.Model):
-    post=models.ForeignKey(Post,null=True,on_delete=models.CASCADE)
-    profile=models.ForeignKey(Profile,on_delete=models.DO_NOTHING)
-    time=models.DateTimeField(auto_now=True)
-    dislike=models.IntegerField(default=0)
 
-class BlogPost(models.Model):
+
+class Categories(models.Model):
+    name = models.CharField(max_length=50,null= False,blank=False)
+    # id =   models.BigAutoField()
+    def __str__(self):
+        return self.name
+
+class News(models.Model):
 	title 			= models.CharField(max_length=50, null=False, blank=False)
 	body 			= models.TextField(max_length=2500, null=False, blank=False)
 	date_published 	= models.DateTimeField(auto_now_add=True, verbose_name="date published")
 	date_updated 	= models.DateTimeField(auto_now=True, verbose_name="date updated")
 	author 			=  models.ForeignKey(User, on_delete=models.CASCADE)
+	category 	    =  models.ForeignKey(Categories, on_delete=models.CASCADE)
 
 
 
 	def __str__(self):
 		return self.title
+
+class like(models.Model):
+    post=models.ForeignKey(News,null=True,on_delete=models.CASCADE)
+    profile=models.ForeignKey(Profile,on_delete=models.DO_NOTHING)
+    time=models.DateTimeField(auto_now=True)
+    dislike=models.IntegerField(default=0)

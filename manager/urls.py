@@ -8,6 +8,9 @@ from django.conf.urls.static import static
 urlpatterns = [
     
 
+     path('', views.FOF.as_view(), name='blog-list-create'),
+
      path('blog/', views.BlogPost.as_view(), name='blog-list-create'),
+     path('categories/', views.Categories.as_view(), name='blog-list-create'),
     path('hello/', views.HelloView.as_view(), name ='hello'),
 ]+ static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
