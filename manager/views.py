@@ -19,7 +19,7 @@ class HelloView(APIView):
         return Response(content)
 
 class BlogPost(APIView):
-    permission_classes = (IsAuthenticated, )
+    # permission_classes = (IsAuthenticated, )
   
     def get(self, request):
         fetchSize=10
@@ -28,7 +28,7 @@ class BlogPost(APIView):
         if 'fetchSize' in request.query_params:
             fetchSize = request.query_params['fetchSize']
         if 'startIndex' in request.query_params:
-            startIndex= request.query_params['startIndex']
+            startIndex= int(request.query_params['startIndex'])
         print(startIndex)
         queryset = blog.objects.all().order_by('-date_published').values()
         size = queryset.count()
