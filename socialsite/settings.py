@@ -21,6 +21,7 @@ DEBUG = False
 # ALLOWED_HOSTS = ['127.0.0.1','publicp.herokuapp.com']
 ALLOWED_HOSTS = ['*']
 CORS_ORIGIN_ALLOW_ALL = True
+SECURE_SSL_REDIRECT = False
 
 # Application definition
 
